@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Amphibians extends Animals{
     private String livingEnvironment;
 
@@ -34,7 +36,25 @@ public class Amphibians extends Animals{
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Amphibians that = (Amphibians) o;
+        return livingEnvironment.equals(that.livingEnvironment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), livingEnvironment);
+    }
+
+    @Override
     public void toEat() {
         System.out.println("Питаюсь насекомыми или мелкими животными");
+    }
+    public void printInfo(){
+        System.out.println("Кличка- " + getName() + ".Возраст- " + getAge() + ".Среда обитания- "
+                + getLivingEnvironment());
     }
 }

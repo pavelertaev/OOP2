@@ -1,8 +1,24 @@
+import java.util.Objects;
+
 public class Flying extends Birds{
     private String movementType;
 
     public String getMovementType() {
         return movementType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Flying flying = (Flying) o;
+        return movementType.equals(flying.movementType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), movementType);
     }
 
     public void setMovementType(String movementType) {
@@ -13,6 +29,7 @@ public class Flying extends Birds{
         }
 
     }
+
 
     public Flying(String name, int age, String livingEnvironment, String movementType) {
         super(name, age, livingEnvironment);

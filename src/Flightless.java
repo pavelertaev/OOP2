@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Flightless extends Birds{
     private String movementType;
 
@@ -27,6 +29,19 @@ public class Flightless extends Birds{
         System.out.println("Не летаю, гуляю по земле");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Flightless that = (Flightless) o;
+        return movementType.equals(that.movementType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), movementType);
+    }
 
     @Override
     public void toGo() {
@@ -36,5 +51,9 @@ public class Flightless extends Birds{
     @Override
     public void toEat() {
         System.out.println("Питаюсь рыбой или насекомыми");
+    }
+    public void printInfo(){
+        System.out.println("Кличка- " + getName() + ".Возраст- " + getAge() + ".Среда обитания- "
+                + getLivingEnvironment() + ".Тип перемещения- " + getMovementType());
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Mammals extends Animals{
     private String livingEnvironment;
     private int moveSpeed;
@@ -27,6 +29,20 @@ public class Mammals extends Animals{
         return moveSpeed;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Mammals mammals = (Mammals) o;
+        return moveSpeed == mammals.moveSpeed && Objects.equals(livingEnvironment, mammals.livingEnvironment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), livingEnvironment, moveSpeed);
+    }
+
     public Mammals(String name, int age, String livingEnvironment, int moveSpeed) {
         super(name, age);
         this.livingEnvironment = livingEnvironment;
@@ -36,7 +52,7 @@ public class Mammals extends Animals{
             this.livingEnvironment="Среда проживания не указана";
         }
         this.moveSpeed = moveSpeed;
-        if(moveSpeed>=0||moveSpeed!='0'){
+        if(moveSpeed>=0){
             this.moveSpeed=moveSpeed;
         }else{
             this.moveSpeed=0;

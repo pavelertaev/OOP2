@@ -1,8 +1,24 @@
+import java.util.Objects;
+
 public class Predators extends Mammals {
     private String typeOfFood;
 
     public String getTypeOfFood() {
         return typeOfFood;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Predators predators = (Predators) o;
+        return typeOfFood.equals(predators.typeOfFood);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), typeOfFood);
     }
 
     public void setTypeOfFood(String typeOfFood) {
@@ -35,5 +51,9 @@ public class Predators extends Mammals {
     @Override
     public void toEat() {
         System.out.println("Питаюсь мясом");
+    }
+    public void printInfo(){
+        System.out.println("Кличка- " + getName() + ".Возраст- " + getAge() + ".Среда обитания- "
+                + getLivingEnvironment() + ".Тип перемещения- " + getMoveSpeed() + ".Тип пищи- " + getTypeOfFood());
     }
 }
